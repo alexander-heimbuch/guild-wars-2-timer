@@ -1,0 +1,380 @@
+@desktop: 1280px;
+
+@font-caption-color: #ffffff;
+@highlight-color: #e38e06;
+
+@shadow-color: #777;
+@background-color: #000;
+
+@timer-shadow: #111;
+
+@desktop-min-width:1024px;
+
+@font-face {
+	font-family: 'gw2';
+	src: url('../fonts/gw2_webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.base-font {
+	font-family: "arial", "helvetica", "sans-serif"; 
+	font-size: 1em;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.caption-font {
+	font-family: "gw2", "arial", "helvetica";
+	font-size: 2.5em;
+	color: @font-caption-color;
+	font-weight: 100;
+	text-shadow: 1px 1px 1px @shadow-color;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	.base-font;
+	overflow: hidden;
+	height: 100%;
+	min-height: 100%;
+	width: 100%;
+}
+
+h3 {
+	.caption-font;
+}
+
+.stage {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+	z-index: 0;
+	background-color: @background-color;
+
+	&:after {
+		content: '';
+		background-image: url('../img/background.png');
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		background-position: center bottom;
+		background-repeat: no-repeat;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		z-index: 20;
+	}
+
+	li {
+		position: absolute;
+		display: none;
+		cursor: pointer;
+		.meta {
+			position: absolute;
+			left: 5%;
+			top: 10%;
+			z-index: 30;
+			width: 100%;
+		}
+		.title {
+			display: inline-block;
+			width: 80%;
+		}
+		.start-time {
+			display: inline-block;
+			font-size: 0.8em;
+			color: @font-caption-color;
+			font-size: 1.1em;
+			text-shadow: 1px 1px 1px @shadow-color;
+		}
+		.background {
+			display: none;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-position: center center;
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			z-index: 10;
+		}
+		&.staged {
+			width: 100%;
+			height: 100%;
+			cursor: auto;
+			left: 0;
+			top: 0;
+			margin: 0;
+			padding: 0;
+			.start-time {
+				display: none;
+			}
+			.background {
+				display: block;
+			}			
+		}
+	}
+}
+
+.current-event {
+	position: absolute;
+	z-index: 30;
+	bottom: 2%;
+	left: 5%;
+	h3 {
+		font-size: 2em;
+	}
+}
+
+.countdown-container {
+	position: absolute;
+	width: 100%;
+	height: 10%;
+	text-align: center;
+	color: @font-caption-color;
+	bottom: 0;
+	margin-bottom: 15%;
+
+	.clock {
+		height: 100%;
+	}
+
+	.clock-item {
+		position: relative;
+		display: inline-block;
+		margin: 0 3%;
+		width: 20%;
+		height: 20%;
+		max-width: 312px;
+		max-height: 312px;
+		.text {
+			position: absolute;
+			font-size: 2em;
+			span {
+				display: block;
+			}
+			.type-time {
+				font-size: 0.5em;
+			}
+		}
+	}
+
+	.clock-canvas {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		.kineticjs-content {
+			background-color: rgba(255,255,255,0.1);
+			border-radius: 50%;
+			-moz-box-shadow:    inset 0 0 20px @timer-shadow;
+		    -webkit-box-shadow: inset 0 0 20px @timer-shadow;
+		    box-shadow:         inset 0 0 20px @timer-shadow;
+		}
+	}
+}
+
+.desktop {
+	.stage {
+		min-width: @desktop-min-width;
+		&:after {
+			min-width: @desktop-min-width;
+		}
+		li {
+			right: 1%;
+			min-width: 200px;
+			min-height: 50px;
+			width: 25%;
+			height: 5%;
+			h3 {
+				font-size: 1.5em;
+				padding-left: 1.2em;
+				&:hover {
+					.mark-as-finished {
+						display: inline-block;
+					}
+				}
+				.mark-as-finished {
+					display: none;
+					cursor: pointer;
+					font-size: 0.75em;
+					margin-left: 0.5em;
+					margin-top: 0.12em;
+					color: @highlight-color;
+				}
+			}
+
+			&.staged {
+				display: block;
+				top: 0 !important;
+				height: 100%;
+				width: 100%;
+				min-width: @desktop-min-width;
+				h3 {
+					margin-top: 5%;
+					padding-left: 0;
+					font-size: 2.5em;
+				}
+				.meta {
+					width: 60%;
+					.start-time {
+						display: block;
+						margin-top: -6em;
+						margin-left: 0.1em;
+					}
+				}
+			}
+
+		}
+		@media(min-width: @desktop) {
+			li:nth-child(1) {
+				display: block;
+				cursor: auto;
+			}
+			li:nth-child(2) {
+				display: block;
+				top: 5%;
+			}
+			li:nth-child(3) {
+				display: block;
+				top: 10%;
+			}
+			li:nth-child(4) {
+				display: block;
+				top: 15%;
+			}
+			li:nth-child(5) {
+				display: block;
+				top: 20%;
+			}
+			li:nth-child(6) {
+				display: block;
+				top: 25%;
+			}
+			li:nth-child(7) {
+				display: block;
+				top: 30%;
+			}
+			li:nth-child(8) {
+				display: block;
+				top: 35%;
+			}
+			li:nth-child(9) {
+				display: block;
+				top: 40%;
+			}
+			li:nth-child(10) {
+				display: block;
+				top: 45%;
+			}
+			li:nth-child(11) {
+				display: block;
+				top: 50%;
+			}
+			li:nth-child(12) {
+				display: block;
+				top: 55%;
+			}
+			li:nth-child(13) {
+				display: block;
+				top: 60%;
+			}
+			li:nth-child(14) {
+				display: block;
+				top: 65%;
+			}
+			li:nth-child(15) {
+				display: block;
+				top: 70%;
+			}
+			li:nth-child(16) {
+				display: block;
+				top: 75%;
+			}
+			li:nth-child(17) {
+				display: block;
+				top: 80%;
+			}
+			li:nth-child(18) {
+				display: block;
+				top: 85%;
+			}
+			li:nth-child(19) {
+				display: block;
+				top: 90%;
+			}
+		}	
+	}
+	.countdown-container {
+		min-width: @desktop-min-width;
+		width: 70%;
+	}
+}
+
+.mobile {
+	.stage {		
+		&:after {
+			background: none;
+		}
+		li {
+			h3 {
+				left: 0;
+				position: relative;
+				width: 90%;
+				margin: 0 auto;
+				text-align: center;
+			}
+		}
+	}
+	.countdown-container {
+		height: 80%;
+		margin: 0;
+		.clock-item {
+			height: 100%;
+			margin: 12% 5% 0 5%;
+		}
+	}
+	&.portrait {
+		.stage {
+			li {
+				h3 {
+					width: 90%;
+				}
+			}
+		}
+		.countdown-container {
+			bottom: 0;
+			display: block;
+			top: 30%;
+			.clock-item {
+				display: inline-block;
+				margin: 0 auto;
+				width: 40%;
+				height: 40%;
+				text-align: center;
+				&.clock-hours {
+					display: block;
+					margin-bottom: -20%;
+				}
+			}
+		}
+	}
+}

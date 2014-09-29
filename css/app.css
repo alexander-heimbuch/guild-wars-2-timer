@@ -1,0 +1,344 @@
+@font-face {
+  font-family: 'gw2';
+  src: url('../fonts/gw2_webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+.base-font {
+  font-family: "arial", "helvetica", "sans-serif";
+  font-size: 1em;
+  font-weight: normal;
+  font-style: normal;
+}
+.caption-font {
+  font-family: "gw2", "arial", "helvetica";
+  font-size: 2.5em;
+  color: #ffffff;
+  font-weight: 100;
+  text-shadow: 1px 1px 1px #777777;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "arial", "helvetica", "sans-serif";
+  font-size: 1em;
+  font-weight: normal;
+  font-style: normal;
+  overflow: hidden;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+}
+h3 {
+  font-family: "gw2", "arial", "helvetica";
+  font-size: 2.5em;
+  color: #ffffff;
+  font-weight: 100;
+  text-shadow: 1px 1px 1px #777777;
+}
+.stage {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  z-index: 0;
+  background-color: #000000;
+}
+.stage:after {
+  content: '';
+  background-image: url('../img/background.png');
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: 20;
+}
+.stage li {
+  position: absolute;
+  display: none;
+  cursor: pointer;
+}
+.stage li .meta {
+  position: absolute;
+  left: 5%;
+  top: 10%;
+  z-index: 30;
+  width: 100%;
+}
+.stage li .title {
+  display: inline-block;
+  width: 80%;
+}
+.stage li .start-time {
+  display: inline-block;
+  font-size: 0.8em;
+  color: #ffffff;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 1px #777777;
+}
+.stage li .background {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: 10;
+}
+.stage li.staged {
+  width: 100%;
+  height: 100%;
+  cursor: auto;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+}
+.stage li.staged .start-time {
+  display: none;
+}
+.stage li.staged .background {
+  display: block;
+}
+.current-event {
+  position: absolute;
+  z-index: 30;
+  bottom: 2%;
+  left: 5%;
+}
+.current-event h3 {
+  font-size: 2em;
+}
+.countdown-container {
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  text-align: center;
+  color: #ffffff;
+  bottom: 0;
+  margin-bottom: 15%;
+}
+.countdown-container .clock {
+  height: 100%;
+}
+.countdown-container .clock-item {
+  position: relative;
+  display: inline-block;
+  margin: 0 3%;
+  width: 20%;
+  height: 20%;
+  max-width: 312px;
+  max-height: 312px;
+}
+.countdown-container .clock-item .text {
+  position: absolute;
+  font-size: 2em;
+}
+.countdown-container .clock-item .text span {
+  display: block;
+}
+.countdown-container .clock-item .text .type-time {
+  font-size: 0.5em;
+}
+.countdown-container .clock-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.countdown-container .clock-canvas .kineticjs-content {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  -moz-box-shadow: inset 0 0 20px #111111;
+  -webkit-box-shadow: inset 0 0 20px #111111;
+  box-shadow: inset 0 0 20px #111111;
+}
+.desktop .stage {
+  min-width: 1024px;
+}
+.desktop .stage:after {
+  min-width: 1024px;
+}
+.desktop .stage li {
+  right: 1%;
+  min-width: 200px;
+  min-height: 50px;
+  width: 25%;
+  height: 5%;
+}
+.desktop .stage li h3 {
+  font-size: 1.5em;
+  padding-left: 1.2em;
+}
+.desktop .stage li h3:hover .mark-as-finished {
+  display: inline-block;
+}
+.desktop .stage li h3 .mark-as-finished {
+  display: none;
+  cursor: pointer;
+  font-size: 0.75em;
+  margin-left: 0.5em;
+  margin-top: 0.12em;
+  color: #e38e06;
+}
+.desktop .stage li.staged {
+  display: block;
+  top: 0 !important;
+  height: 100%;
+  width: 100%;
+  min-width: 1024px;
+}
+.desktop .stage li.staged h3 {
+  margin-top: 5%;
+  padding-left: 0;
+  font-size: 2.5em;
+}
+.desktop .stage li.staged .meta {
+  width: 60%;
+}
+.desktop .stage li.staged .meta .start-time {
+  display: block;
+  margin-top: -6em;
+  margin-left: 0.1em;
+}
+@media (min-width: 1280px) {
+  .desktop .stage li:nth-child(1) {
+    display: block;
+    cursor: auto;
+  }
+  .desktop .stage li:nth-child(2) {
+    display: block;
+    top: 5%;
+  }
+  .desktop .stage li:nth-child(3) {
+    display: block;
+    top: 10%;
+  }
+  .desktop .stage li:nth-child(4) {
+    display: block;
+    top: 15%;
+  }
+  .desktop .stage li:nth-child(5) {
+    display: block;
+    top: 20%;
+  }
+  .desktop .stage li:nth-child(6) {
+    display: block;
+    top: 25%;
+  }
+  .desktop .stage li:nth-child(7) {
+    display: block;
+    top: 30%;
+  }
+  .desktop .stage li:nth-child(8) {
+    display: block;
+    top: 35%;
+  }
+  .desktop .stage li:nth-child(9) {
+    display: block;
+    top: 40%;
+  }
+  .desktop .stage li:nth-child(10) {
+    display: block;
+    top: 45%;
+  }
+  .desktop .stage li:nth-child(11) {
+    display: block;
+    top: 50%;
+  }
+  .desktop .stage li:nth-child(12) {
+    display: block;
+    top: 55%;
+  }
+  .desktop .stage li:nth-child(13) {
+    display: block;
+    top: 60%;
+  }
+  .desktop .stage li:nth-child(14) {
+    display: block;
+    top: 65%;
+  }
+  .desktop .stage li:nth-child(15) {
+    display: block;
+    top: 70%;
+  }
+  .desktop .stage li:nth-child(16) {
+    display: block;
+    top: 75%;
+  }
+  .desktop .stage li:nth-child(17) {
+    display: block;
+    top: 80%;
+  }
+  .desktop .stage li:nth-child(18) {
+    display: block;
+    top: 85%;
+  }
+  .desktop .stage li:nth-child(19) {
+    display: block;
+    top: 90%;
+  }
+}
+.desktop .countdown-container {
+  min-width: 1024px;
+  width: 70%;
+}
+.mobile .stage:after {
+  background: none;
+}
+.mobile .stage li h3 {
+  left: 0;
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+.mobile .countdown-container {
+  height: 80%;
+  margin: 0;
+}
+.mobile .countdown-container .clock-item {
+  height: 100%;
+  margin: 12% 5% 0 5%;
+}
+.mobile.portrait .stage li h3 {
+  width: 90%;
+}
+.mobile.portrait .countdown-container {
+  bottom: 0;
+  display: block;
+  top: 30%;
+}
+.mobile.portrait .countdown-container .clock-item {
+  display: inline-block;
+  margin: 0 auto;
+  width: 40%;
+  height: 40%;
+  text-align: center;
+}
+.mobile.portrait .countdown-container .clock-item.clock-hours {
+  display: block;
+  margin-bottom: -20%;
+}
