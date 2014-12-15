@@ -1,0 +1,385 @@
+@desktop-min-width: 1024px;
+@desktop: 1280px;
+
+.desktop {
+    .stage {
+        min-width: @desktop-min-width;
+        li {
+            top: 0;
+            left: 80%;
+            width: 300px;
+            min-height: 50px;
+            margin-top: 1%;
+            width: 25%;
+            height: 5%;
+            -webkit-transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out;
+            -o-transition: all 1s ease-in-out;
+            -ms-transition: all 1s ease-in-out;
+            transition: all 1s ease-in-out;
+
+            h3 {
+                display: inline-block;
+                font-size: 110%;
+                background-color: @primary-color;
+                color: @tertiary-color;
+                width: 250px;
+                padding: 0;
+                margin: 0 0 0 -0.2em;
+                height: 100%;
+                padding: 0.2em 0.4em 0.2em 0.6em;
+                line-height: 30px;
+            }
+
+            .action {
+                .caption-font;
+                font-size: 110%;
+                background-color: @secondary-color;
+                display: block;
+                float: left;
+                padding: 0.2em;
+                width: 55px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+                .activity {
+                    position: absolute;
+                    width: 165px;
+                    margin-left: -55px;
+                    -webkit-transition: 0.2s linear;
+                    -moz-transition: 0.2s linear;
+                    -o-transition: 0.2s linear;
+                    -ms-transition: 0.2s linear;
+                    transition: 0.2s linear;
+                }
+                &:hover {
+                    .activity {
+                        margin-left: -110px !important;
+                    }
+                }
+            }
+
+            .show, .mark-as-finished, .start-time {
+                line-height: 30px;
+                display: block;
+                float: left;
+                width: 55px;
+                z-index: 99;
+            }
+
+            .meta {
+                position: absolute;
+                left: 5%;
+                top: 5%;
+                z-index: 30;
+                width: 100%;
+                padding: 0.1em;
+                height: 30px;
+                &:hover {
+                    .activity {
+                        margin-left: 0px;
+                    }
+                }
+            }
+
+            .objective {
+                -webkit-transition: all 0.4s linear;
+                -moz-transition: all 0.4s linear;
+                -o-transition: all 0.4s linear;
+                -ms-transition: all 0.4s linear;
+                transition: all 0.4s linear;
+                color: @primary-color;
+                font-size: 120%;
+                font-weight: lighter;
+                margin: 3m 0 0 0;
+                line-height: 0;
+                height: 0;
+                overflow: hidden;
+            }
+
+            &.staged {
+                width: 100%;
+                height: 100%;
+                cursor: auto;
+                left: 0;
+                top: 0;
+                margin: 0;
+                padding: 0;
+                display: block;
+                top: 0 !important;
+                height: 100%;
+                width: 100%;
+                min-width: @desktop-min-width;
+
+                h3 {
+                    float: left;
+                    padding-left: 0;
+                    font-size: 180%;
+                    width: 400px;
+                    background-color: @primary-color;
+                    color: @tertiary-color;
+                    padding: 0.25em 0 0.25em 0.4em;
+                    margin-left: 0;
+                    font-weight: lighter;
+                }
+
+                .meta {
+                    width: 500px;
+                    cursor: auto;
+                    &:hover {
+                        .activity {
+                            margin-left: -75px;
+                        }
+                    }
+                }
+
+                .action {
+                    padding: 0.35em 0.4em;
+                    float: left;
+                    line-height: 250%;
+                    font-size: 130%;
+                    cursor: auto;
+                    &:hover {
+                        .activity {
+                            margin-left: -75px !important;
+                        }
+                    }
+                }
+
+                .activity {
+                    margin-left: -75px;
+                    width: 210px;
+                }
+
+                .show, .mark-as-finished, .start-time {
+                    width: 70px;
+                }
+
+                .objective {
+                    margin-top: 3em;
+                    line-height: 1.2em;
+                    height: auto;
+                }
+            }
+
+        }
+        @media(min-width: @desktop) {
+            li:nth-child(1) {
+                display: block;
+                cursor: auto;
+                .meta {
+                    .action {
+                        cursor: pointer;
+                    }
+                    &:hover {
+                        .activity {
+                            margin-left: -55px;
+                        }
+                    }
+                }
+            }
+            li:nth-child(2) {
+                display: block;
+                top: 50px;
+            }
+            li:nth-child(3) {
+                display: block;
+                top: 100px;
+            }
+            li:nth-child(4) {
+                display: block;
+                top: 150px;
+            }
+            li:nth-child(5) {
+                display: block;
+                top: 200px;
+            }
+            li:nth-child(6) {
+                display: block;
+                top: 250px;
+            }
+            li:nth-child(7) {
+                display: block;
+                top: 300px;
+            }
+            li:nth-child(8) {
+                display: block;
+                top: 350px;
+            }
+            li:nth-child(9) {
+                display: block;
+                top: 400px;
+            }
+            li:nth-child(10) {
+                display: block;
+                top: 450px;
+            }
+            li:nth-child(11) {
+                display: block;
+                top: 500px;
+            }
+            li:nth-child(12) {
+                display: block;
+                top: 550px;
+            }
+            li:nth-child(13) {
+                display: block;
+                top: 600px;
+            }
+            li:nth-child(14) {
+                display: block;
+                top: 650px;
+            }
+            li:nth-child(15) {
+                display: block;
+                top: 700px;
+            }
+            li:nth-child(16) {
+                display: block;
+                top: 750px;
+            }
+            li:nth-child(17) {
+                display: block;
+                top: 800px;
+            }
+            li:nth-child(18) {
+                display: block;
+                top: 850px;
+            }
+            li:nth-child(19) {
+                display: block;
+                top: 900px;
+            }
+        }
+    }
+
+    .countdown-container {
+        min-width: @desktop-min-width;
+        width: 70%;
+
+        position: absolute;
+        height: 10%;
+        text-align: center;
+        color: @primary-color;
+        bottom: 0;
+
+        margin-bottom: 25%;
+
+        .clock {
+            height: 100%;
+        }
+
+        .clock-item {
+            position: relative;
+            display: inline-block;
+            margin: 0 3% 2% 0;
+            width: 25%;
+            height: 25%;
+            max-width: 300px;
+            max-height: 300px;
+
+            .clock-canvas {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                .kineticjs-content {
+                    background-color: rgba(255,255,255,0.1);
+                    border-radius: 50%;
+                    -moz-box-shadow:    inset 0 0 20px @timer-shadow;
+                    -webkit-box-shadow: inset 0 0 20px @timer-shadow;
+                    box-shadow:         inset 0 0 20px @timer-shadow;
+                }
+            }
+
+            .text {
+                position: absolute;
+                font-size: 200%;
+                span {
+                    display: block;
+                }
+                .type-time {
+                    font-size: 50%;
+                }
+            }
+        }
+    }
+
+    .background {
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        opacity: 1;
+    }
+
+    &.unstaging {
+        .background {
+            opacity: 0;
+        }
+    }
+
+    .help {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-size: 250%;
+        padding: 25px;
+
+        i {
+            opacity: 0.9;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .about-overlay {
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        z-index: 50;
+        position: absolute;
+        bottom: -100px;
+        left: 0;
+        display: block;
+        width: 100%;
+        padding: 25px 0;
+        background-color: @tertiary-color;
+
+        .footer {
+            float: left;
+            position: relative;
+            list-style: none;
+            margin: 0 50px;
+            line-height: 300%;
+            li {
+                margin-right: 20px;
+                display: inline-block;
+                a {
+                    text-decoration: none;
+                    color: @primary-color;
+                }
+            }
+        }
+
+        .copyright {
+            width: 100%;
+            text-align: right;
+            color: @secondary-color;
+            margin-left: -50px;
+            line-height: 300%;
+        }
+
+        &.visible {
+            bottom: 0;
+        }
+    }
+}

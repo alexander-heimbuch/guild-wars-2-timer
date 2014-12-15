@@ -9,7 +9,8 @@
  * @license GPL 2
  * @link https://github.com/PragmaticMates/jquery-final-countdown
  */
-(function ($) {
+define(['jquery', 'kinetic'], function ($, Kinetic) {
+
     'use strict';
 
     function FinalCountdown (selector, options, callback) {
@@ -25,6 +26,11 @@
         this.layerMinutes = undefined;
         this.layerHours = undefined;
         this.layerDays = undefined;
+
+        this.daysWidth = undefined;
+        this.hoursWidth = undefined;
+        this.minutesWidth = undefined;
+        this.secondsWidth = undefined;
 
         this.callbackFunction = undefined;
         this.element = $(selector);     
@@ -148,52 +154,6 @@
             $(window).on('resize', this.update);
         },
 
-        prepare : function () {
-            // Seconds
-            this.prepareSeconds();
-            // Minutes
-            this.prepareMinutes();
-            // Hours
-            this.prepareHours();
-            // Days
-            this.prepareDays();
-        },
-
-        prepareSeconds : function () {
-            if (this.element.find(this.settings.selectors.canvas_seconds).length === 0) {
-                this.layerSeconds = { draw: function () {} };
-                return;
-            }
-
-            var self = this,
-            secondsWidth = this.element.find(this.settings.selectors.canvas_seconds).width(),
-            secondsStage = new Kinetic.Stage({
-                container: self.element.find(self.settings.selectors.canvas_seconds).get(0),
-                width: secondsWidth,
-                height: secondsWidth
-            });
-
-            this.circleSeconds = new Kinetic.Shape({
-                drawFunc: function (context) {
-                    var radius = secondsWidth / 2 - self.settings.seconds.borderWidth / 2,
-                    x = secondsWidth / 2,
-                    y = secondsWidth / 2;
-
-                    context.beginPath();
-                    context.arc(x, y, radius, convertToDeg(0), convertToDeg(self.timer.seconds * 6));
-                    context.fillStrokeShape(this);
-
-                    self.element.find(self.settings.selectors.value_seconds).html(60 - self.timer.seconds);
-                },
-                stroke: self.settings.seconds.borderColor,
-                strokeWidth: self.settings.seconds.borderWidth
-            });
-
-            this.layerSeconds = new Kinetic.Layer();
-            this.layerSeconds.add(this.circleSeconds);
-            secondsStage.add(this.layerSeconds);            
-        },
-
         centerLabels : function () {
 
             var self = this,
@@ -223,25 +183,73 @@
 
         },
 
+        prepare : function () {
+            // Seconds
+            this.prepareSeconds();
+            // Minutes
+            this.prepareMinutes();
+            // Hours
+            this.prepareHours();
+            // Days
+            this.prepareDays();
+        },
+
+        prepareSeconds : function () {
+            if (this.element.find(this.settings.selectors.canvas_seconds).length === 0) {
+                this.layerSeconds = { draw: function () {} };
+                return;
+            }
+
+            this.secondsWidth = this.secondsWidth || this.element.find(this.settings.selectors.canvas_seconds).width();
+
+            var self = this,
+                secondsStage = new Kinetic.Stage({
+                    container: self.element.find(self.settings.selectors.canvas_seconds).get(0),
+                    width: self.secondsWidth,
+                    height: self.secondsWidth
+                });
+
+            this.circleSeconds = new Kinetic.Shape({
+                drawFunc: function (context) {
+                    var radius = self.secondsWidth / 2 - self.settings.seconds.borderWidth / 2,
+                    x = self.secondsWidth / 2,
+                    y = self.secondsWidth / 2;
+
+                    context.beginPath();
+                    context.arc(x, y, radius, convertToDeg(0), convertToDeg(self.timer.seconds * 6));
+                    context.fillStrokeShape(this);
+
+                    self.element.find(self.settings.selectors.value_seconds).html(60 - self.timer.seconds);
+                },
+                stroke: self.settings.seconds.borderColor,
+                strokeWidth: self.settings.seconds.borderWidth
+            });
+
+            this.layerSeconds = new Kinetic.Layer();
+            this.layerSeconds.add(this.circleSeconds);
+            secondsStage.add(this.layerSeconds);            
+        },
+
         prepareMinutes : function () {
             if (this.element.find(this.settings.selectors.canvas_minutes).length === 0) {
                 this.layerMinutes = { draw: function () {} };
                 return;
             }
 
+            this.minutesWidth = this.minutesWidth || this.element.find(this.settings.selectors.canvas_minutes).width();
+
             var self = this,
-            minutesWidth = this.element.find(this.settings.selectors.canvas_minutes).width(),
-            minutesStage = new Kinetic.Stage({
-                container: self.element.find(self.settings.selectors.canvas_minutes).get(0),
-                width: minutesWidth,
-                height: minutesWidth
-            });
+                minutesStage = new Kinetic.Stage({
+                    container: self.element.find(self.settings.selectors.canvas_minutes).get(0),
+                    width: self.minutesWidth,
+                    height: self.minutesWidth
+                });
 
             this.circleMinutes = new Kinetic.Shape({
                 drawFunc: function (context) {
-                    var radius = minutesWidth / 2 - self.settings.minutes.borderWidth / 2,
-                    x = minutesWidth / 2,
-                    y = minutesWidth / 2;
+                    var radius = self.minutesWidth / 2 - self.settings.minutes.borderWidth / 2,
+                    x = self.minutesWidth / 2,
+                    y = self.minutesWidth / 2;
 
                     context.beginPath();
                     context.arc(x, y, radius, convertToDeg(0), convertToDeg(self.timer.minutes * 6));
@@ -265,19 +273,20 @@
                 return;
             }
 
+            this.hoursWidth = this.hoursWidth || this.element.find(this.settings.selectors.canvas_hours).width();
+
             var self = this,
-            hoursWidth = this.element.find(this.settings.selectors.canvas_hours).width(),
-            hoursStage = new Kinetic.Stage({
-                container: self.element.find(self.settings.selectors.canvas_hours).get(0),
-                width: hoursWidth,
-                height: hoursWidth
-            });
+                hoursStage = new Kinetic.Stage({
+                    container: self.element.find(self.settings.selectors.canvas_hours).get(0),
+                    width: self.hoursWidth,
+                    height: self.hoursWidth
+                });
 
             this.circleHours = new Kinetic.Shape({
                 drawFunc: function(context) {
-                    var radius = hoursWidth / 2 - self.settings.hours.borderWidth/2,
-                    x = hoursWidth / 2,
-                    y = hoursWidth / 2;
+                    var radius = self.hoursWidth / 2 - self.settings.hours.borderWidth/2,
+                    x = self.hoursWidth / 2,
+                    y = self.hoursWidth / 2;
 
                     context.beginPath();
                     context.arc(x, y, radius, convertToDeg(0), convertToDeg(self.timer.hours * 360 / 24));
@@ -300,19 +309,20 @@
                 return;
             }
 
+            this.daysWidth = this.daysWidth || this.element.find(this.settings.selectors.canvas_days).width();
+
             var self = this,
-            daysWidth = this.element.find(this.settings.selectors.canvas_days).width(),
-            DaysStage = new Kinetic.Stage({
-                container: self.element.find(self.settings.selectors.canvas_days).get(0),
-                width: daysWidth,
-                height: daysWidth
-            });
+                daysStage = new Kinetic.Stage({
+                    container: self.element.find(self.settings.selectors.canvas_days).get(0),
+                    width: self.daysWidth,
+                    height: self.daysWidth
+                });
 
             this.circleDays = new Kinetic.Shape({
                 drawFunc: function(context) {
-                    var radius = daysWidth / 2 - self.settings.days.borderWidth/2,
-                    x = daysWidth / 2,
-                    y = daysWidth / 2;
+                    var radius = self.daysWidth / 2 - self.settings.days.borderWidth/2,
+                    x = self.daysWidth / 2,
+                    y = self.daysWidth / 2;
 
                     context.beginPath();
 
@@ -327,7 +337,7 @@
 
             this.layerDays = new Kinetic.Layer();
             this.layerDays.add(this.circleDays);
-            DaysStage.add(this.layerDays);
+            daysStage.add(this.layerDays);
         },
 
         start : function () {
@@ -386,12 +396,12 @@
             this.interval = undefined;
         }
     };
-
-    $.fn.final_countdown = function(options, callback) {
-        return new FinalCountdown(this, options, callback);
-    };
-
+    
     function convertToDeg(degree) {
         return (Math.PI/180)*degree - (Math.PI/180)*90;
     }
-})(jQuery);
+
+    return function(timerContainer ,options, callback) {
+        return new FinalCountdown(timerContainer, options, callback);
+    };
+});

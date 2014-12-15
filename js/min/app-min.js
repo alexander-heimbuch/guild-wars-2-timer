@@ -1,1 +1,0 @@
-require.config({baseUrl:"js",paths:{jquery:"vendor/jquery-2.1.0.min",Queue:"lib/queue"}}),require(["jquery","Queue"],function($,e){var n=new e(function(){console.log("on Start")},function(){console.log("onUpdate")});n.add("test1234",{end:1234,start:0xb3bd65ca468}),n.add("12312312",{end:8765,start:0xb3bd65ca468}),n.start()});

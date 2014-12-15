@@ -1,0 +1,34 @@
+{
+  "name": "guild-wars-2-timer",
+  "version": "0.5.0",
+  "description": "A responsive timer for mega events.",
+  "main": "index.html",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-less": "^0.12.0",
+    "grunt-contrib-requirejs": "^0.4.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://zusatzstoff@github.com/zusatzstoff/guild-wars-2-timer.git"
+  },
+  "keywords": [
+    "guild-wars-2",
+    "timer",
+    "webapp"
+  ],
+  "author": "Alexander Heimbuch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zusatzstoff/guild-wars-2-timer/issues"
+  },
+  "homepage": "https://github.com/zusatzstoff/guild-wars-2-timer"
+}
