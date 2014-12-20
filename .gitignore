@@ -2,4 +2,5 @@
 /css
 /dist
 config.codekit
+*.min.js
 /node_modules
