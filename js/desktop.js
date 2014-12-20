@@ -23,7 +23,7 @@ define(['jquery', 'cookieHandler'], function ($, cookie) {
                         Queue.remove(index);
                         cookie.markResolved(event.event);
                         if (index === Queue.upcomingEvent) {
-                            Stage.on(Queue.upcomingEvent);
+                            Stage.on(Queue.upcomingEvent, Queue.q[Queue.upcomingEvent]);
                         }
                     }
                 });
@@ -42,7 +42,7 @@ define(['jquery', 'cookieHandler'], function ($, cookie) {
                     return false;
                 }
 
-                Stage.on(index);
+                Stage.on(index, Queue.q[index]);
                 Queue.upcomingEvent = index;
                 Timer.set(parseInt(new Date().getTime()/1000), parseInt(event.start/1000), parseInt(new Date().getTime()/1000));
                 Timer.update();

@@ -35,7 +35,7 @@ define(['jquery'], function ($) {
         init: function (eventQueue, eventAction) {
             var self = this;
 
-            eventQueue.forEach(function (event, index) {
+            eventQueue.forEach(function (event) {
                 var $eventDom = $(self.list[event.event].container);
                 eventAction(event, $eventDom);
 
@@ -58,21 +58,21 @@ define(['jquery'], function ($) {
             this.stage.find('li').eq(index).remove();
         },
 
-        on: function (index) {
-            var self = this;
+        on: function (index, event) {
+            var self = this,
+                eventDom = this.stage.find('li').eq(index);
+            
             this.stage.find('.staged').removeClass('staged');
 
-            var event = this.stage.find('li').eq(index);
+            eventDom.addClass('staged');
 
-            event.addClass('staged');
-
-            if (event.data('id') !== undefined) {
-                window.location.hash = event.data('id');
+            if (eventDom.data('id') !== undefined && eventDom.data('id') === event.event) {
+                window.location.hash = event.event + ':' + event.start;
             }
 
             $('html').addClass('unstaging').delay(500).queue(function (next) {
                 var currentImg = self.background.find('.event-image'),
-                    nextImg = event.find('.event-image').clone();
+                    nextImg = eventDom.find('.event-image').clone();
 
                 if (currentImg.length === 0) {
                     self.background.append(nextImg);

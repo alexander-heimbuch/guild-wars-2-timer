@@ -40,13 +40,16 @@ define(['jquery', 'cookieHandler', 'Queue', 'Stage', 'Timer'], function ($, cook
                 }
 
                 if (window.location.hash !== '') {
-                    var search = Queue.find(window.location.hash.substring(1));
-                    if (search.length > 0 && (search[0].start > (new Date().getTime() + (15 * 60 * 1000)))) {
+                    var savedEvent = window.location.hash.substring(1).split(':'),
+                        search = Queue.find(savedEvent[0]),
+                        buffer = new Date().getTime() + (15 * 60 * 1000);
+
+                    if ((savedEvent[1] > new Date().getTime()) && (search.length > 0) && (search[0].start > buffer)) {
                         event = search[0];
                         index = event.index;
                     }
                 }
-                Stage.on(index);
+                Stage.on(index, event);
                 Timer.set(parseInt(new Date().getTime()/1000), parseInt(event.start/1000), parseInt(new Date().getTime()/1000));
                 Timer.start();
             },
@@ -54,8 +57,9 @@ define(['jquery', 'cookieHandler', 'Queue', 'Stage', 'Timer'], function ($, cook
                 if (event === undefined) {
                     location.reload();
                 }
+
                 Stage.off(current);
-                Stage.on(upcoming);
+                Stage.on(upcoming, event);
                 Timer.set(parseInt(new Date().getTime()/1000), parseInt(event.start/1000), parseInt(new Date().getTime()/1000));
             }
         );
