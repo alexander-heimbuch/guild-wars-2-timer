@@ -54,34 +54,25 @@ define(function () {
         terminate: function (time) {
 
             var now = new Date(),
-                utcStartTime = new Date(),
+                // 
+                coeff = 1000 * 60 * 5,
+    
                 eventTime = {
                     start: 0,
                     end: 0
                 },
 
                 hours = parseInt(time.split(':').shift()),
-                minutes = parseInt(time.split(':').pop());
+                minutes = parseInt(time.split(':').pop()),
 
-            // Convert the utcStartTime to the local timezone with offset, also consideres daylight saving time
-            // (holy shit whoever invtented dst will probably burn in hell)
-            utcStartTime.setHours(hours + (new Date().getTimezoneOffset() / 60));
-            utcStartTime.setMinutes(minutes);
+                startTime = new Date();
+                startTime.setUTCHours(hours);
+                startTime.setUTCMinutes(minutes);
 
-            if (hours < utcStartTime.getHours()) {
-                utcStartTime.setDate(utcStartTime.getDate() + 1);
-            }
-
-            // Calculate the end in milliseconds and the start time
-            var endInMilliSeconds = Date.UTC(utcStartTime.getUTCFullYear(), utcStartTime.getUTCMonth(), utcStartTime.getUTCDate(), utcStartTime.getUTCHours(), utcStartTime.getUTCMinutes()) -
-                                    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds()),
-                startTime = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes()) + endInMilliSeconds,
-                coeff = 1000 * 60 * 5;
-
+            eventTime.end = startTime.getTime() - now.getTime();
             eventTime.start = Math.round(startTime / coeff) * coeff;
-            eventTime.end = endInMilliSeconds;
 
-            // In case the event start was not within the last 15 minutes the event is not in the queue
+            // In case the event start was not within the last 15 minutes don't put bring it in the queue
             if (eventTime.end >= (-1 * 15 * 60 * 1000)) {
                 return eventTime;
             }
