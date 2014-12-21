@@ -21,7 +21,9 @@ require(['jquery'], function ($) {
     'use strict';
 
     // Image preloader
-    var $preloader = $('<div class="preloader"><i class="fa fa-refresh fa-spin"></i></div>');
+    var $preloader = $('<div class="preloader"><i class="fa fa-refresh fa-spin"></i></div>'),
+        applicationStart = new Date();
+
     $('body').append($preloader);
 
     // After the full page is loaded get the core and remove the preloader
@@ -38,6 +40,8 @@ require(['jquery'], function ($) {
 
     // To prevent errors with timings we reload the full application on focus
     $(window).focus(function () {
-        location.reload();
+        if (applicationStart - new Date() <= -1 * 60 * 1000 * 5) {
+            location.reload();
+        }
     });
 });
