@@ -4,9 +4,13 @@
  */
 define(['jquery', 'cookieHandler'], function ($, cookie) {
     'use strict';
-    // Returns the interaction that is executed by the queue 
+
+    window.addEventListener('resize', function () {
+        location.reload();
+    });
+    // Returns the interaction that is executed by the queue
     return function (Stage, Queue, Timer) {
-        // This function is executed for every 
+        // This function is executed for every
         return function (event, $eventDom) {
             // Create the mark as finished action dom and registers actions
             var $activity = $eventDom.find('.activity'),
