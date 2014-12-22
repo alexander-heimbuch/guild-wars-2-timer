@@ -1,12 +1,14 @@
 @desktop-min-width: 1024px;
+@desktop-min-height: 768px;
 @desktop: 1280px;
 
 .desktop {
     .stage {
         min-width: @desktop-min-width;
+        min-height: @desktop-min-height;
         li {
             top: 0;
-            right: 10px;
+            left: 80%;
             width: 300px;
             min-height: 50px;
             margin-top: 1%;
@@ -85,17 +87,17 @@
             }
 
             .objective {
-                -webkit-transition: all 0.4s linear;
-                -moz-transition: all 0.4s linear;
-                -o-transition: all 0.4s linear;
-                -ms-transition: all 0.4s linear;
-                transition: all 0.4s linear;
+                -webkit-transition: all 0.5 linear;
+                -moz-transition: all 0.5 linear;
+                -o-transition: all 0.5 linear;
+                -ms-transition: all 0.5 linear;
+                transition: all 0.5 linear;
                 color: @primary-color;
                 font-size: 120%;
                 font-weight: lighter;
-                margin: 3m 0 0 0;
-                line-height: 0;
-                height: 0;
+                margin: 3em 0 0 0;
+                line-height: 1.2em;
+                opacity: 0;
                 overflow: hidden;
             }
 
@@ -158,9 +160,7 @@
                 }
 
                 .objective {
-                    margin-top: 3em;
-                    line-height: 1.2em;
-                    height: auto;
+                    opacity: 1;
                 }
             }
 
@@ -259,19 +259,19 @@
             li:nth-child(21) {
                 display: block;
                 top: 1000px;
-            }            
+            }
             li:nth-child(22) {
                 display: block;
                 top: 1050px;
-            }            
+            }
             li:nth-child(23) {
                 display: block;
                 top: 1100px;
-            }            
+            }
             li:nth-child(24) {
                 display: block;
                 top: 1150px;
-            } 
+            }
             li:nth-child(25) {
                 display: block;
                 top: 1200px;
@@ -289,7 +289,8 @@
         color: @primary-color;
         bottom: 0;
 
-        margin-bottom: 25%;
+        top: 50%;
+        margin-top: -150px;
 
         .clock {
             height: 100%;
@@ -301,8 +302,8 @@
             margin: 0 3% 2% 0;
             width: 25%;
             height: 25%;
-            max-width: 300px;
-            max-height: 300px;
+            max-width: 350px;
+            max-height: 350px;
 
             .clock-canvas {
                 position: absolute;
