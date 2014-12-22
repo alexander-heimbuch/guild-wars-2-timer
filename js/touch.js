@@ -35,7 +35,7 @@ define(['jquery', 'cookieHandler', 'swipe'], function ($, cookie, swipe) {
                     return false;
                 }
 
-                Stage.on(index);
+                Stage.on(index, Queue.q[index]);
                 Queue.upcomingEvent = index;
                 Timer.set(parseInt(new Date().getTime()/1000), parseInt(Queue.q[index].start/1000), parseInt(new Date().getTime()/1000));
                 Timer.update();
