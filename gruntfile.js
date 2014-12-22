@@ -73,6 +73,9 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+        bower: {
+            install: {}
         }
     });
 
@@ -80,7 +83,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-bower-task');
 
-    grunt.registerTask('build', ['clean', 'less', 'copy', 'requirejs']);
-
+    grunt.registerTask('dist', ['clean', 'bower', 'less', 'copy', 'requirejs']);
+    grunt.registerTask('default', ['bower', 'less']);
 };
