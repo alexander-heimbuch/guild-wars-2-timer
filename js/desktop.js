@@ -21,11 +21,11 @@ define(['jquery', 'cookieHandler'], function ($, cookie) {
             $activity.append($actions);
 
             $markAsFinished.on('click', function() {
-                Queue.q.forEach( function(event, index) {
-                    if (event.event === event.event) {
+                Queue.q.forEach( function(selectedEvent, index) {
+                    if (event.event === selectedEvent.event) {
                         Stage.off(index);
                         Queue.remove(index);
-                        cookie.markResolved(event.event);
+                        cookie.markResolved(selectedEvent.event);
                         if (index === Queue.upcomingEvent) {
                             Stage.on(Queue.upcomingEvent, Queue.q[Queue.upcomingEvent]);
                         }
