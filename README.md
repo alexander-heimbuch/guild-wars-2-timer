@@ -1,5 +1,7 @@
 # Guild Wars 2 Event Timer
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/alexander-heimbuch/guild-wars-2-timer.svg)](https://greenkeeper.io/)
+
 [Live Version (0.5 beta)](https://zusatzstoff.github.io/guild-wars-2-timer)
 
 ## Usage
